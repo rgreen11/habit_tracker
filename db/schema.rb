@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_23_213448) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_24_011029) do
+  create_table "habits", force: :cascade do |t|
+    t.string "habit", default: "", null: false
+    t.string "frequency_unit", default: "", null: false
+    t.string "frequency_value", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
