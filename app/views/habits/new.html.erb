@@ -1,0 +1,27 @@
+<h1>New Habit</h1>
+
+
+<%= form_with model: @habit do |form| %>
+    <div>
+        <%= form.label :name %>:
+        <%= form.text_field :name %>
+    </div>
+    <div>
+        <%= form.label :frequency_unit %>:
+        <%= form.text_field :frequency_unit %>
+    </div>
+
+    <div>
+        <%= form.label :frequency_value %>:
+        <%= form.text_field :frequency_value %>
+    </div>
+    <div>
+        <%= form.label :start_date %>:
+        <%= form.text_field :start_date %>
+    </div>
+
+    <div>
+        <%= form.submit%>
+    </div>
+
+<% end %>

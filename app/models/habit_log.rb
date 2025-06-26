@@ -11,6 +11,7 @@ class HabitLog < ApplicationRecord
   private
 
   def set_default_log_date
+    # Ensures every row has a start date
     self.log_date ||= Date.today
   end
 end

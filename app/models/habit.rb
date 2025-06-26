@@ -10,7 +10,7 @@ class Habit < ApplicationRecord
   before_validation :set_default_start_date, on: :create
 
   def set_default_start_date
-    # Ensurse every row has a start date
+    # Ensures every row has a start date
     self.start_date ||= Date.today
   end
 end
