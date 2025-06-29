@@ -4,10 +4,5 @@
 
 
 <div id="habit">
-    <% @habits.each do |habit| %>
-        <div>
-            <%= habit.name %>
-        </div>
-    <% end %>
-
+    <%= render @habits %>
 </div>

@@ -1,0 +1,12 @@
+<div class="habit">
+  <h3>Habit name: <%= habit.name %></h3>
+  <p>
+    Every <%= habit.frequency_value %> <%= habit.frequency_unit.pluralize(habit.frequency_value) %>
+  </p>
+  <p>
+    Start Date: <%= habit.start_date.strftime("%b %d, %Y") %>
+  </p>
+  <p>
+    Status: <%= habit.habit_logs.first&.status || "No logs yet" %>
+  </p>
+</div>

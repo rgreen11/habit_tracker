@@ -1,0 +1,13 @@
+<h1>Log Habit</h1>
+
+<%= link_to "Log Habit", habit_logs_new_path %>
+
+
+<div id="habit_log">
+    <% @habit_logs.each do |habit_log| %>
+        <div>
+            <%= habit_log.name %>
+        </div>
+    <% end %>
+
+</div>
