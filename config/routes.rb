@@ -15,9 +15,5 @@ Rails.application.routes.draw do
   get "/habit_logs", to: "habit_logs#index"
   get "/habit_logs/new", to: "habit_logs#new"
   post "/habit_logs", to: "habit_logs#create"
-
-
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  post "/quick_check_in", to: "habit_logs#quick_check_in"
 end

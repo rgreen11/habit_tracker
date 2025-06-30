@@ -1,12 +1,17 @@
-<div class="habit">
-  <h3>Habit name: <%= habit.name %></h3>
-  <p>
-    Every <%= habit.frequency_value %> <%= habit.frequency_unit.pluralize(habit.frequency_value) %>
-  </p>
-  <p>
-    Start Date: <%= habit.start_date.strftime("%b %d, %Y") %>
-  </p>
-  <p>
-    Status: <%= habit.habit_logs.first&.status || "No logs yet" %>
-  </p>
-</div>
+<br/>
+<turbo-frame id="habit_<%= habit.id %>">
+    <div class="habit">
+        <h3>Habit name: <%= habit.name %></h3>
+        <p>
+            Every <%= habit.frequency_value %> <%= habit.frequency_unit.pluralize(habit.frequency_value) %>
+        </p>
+        <p>
+            Start Date: <%= habit.start_date.strftime("%b %d, %Y") %>
+        </p>
+        <p>
+            Status: <%= habit.habit_logs.first&.status || "No logs yet" %>
+        </p>
+        <% if habit.habit_logs.first&.status != "done" %>
+            <%= button_to "Mark Done", quick_check_in_path(habit_id: habit.id), method: :post %>
+        <% end %>
+    </div>
