@@ -6,7 +6,6 @@ class HabitsController < ApplicationController
 
   def show
     @habit = Habit.find(params[:id]) 
-    @habit_logs = Habit.find(params[:id]) 
   end
 
   def new
@@ -18,7 +17,6 @@ class HabitsController < ApplicationController
     @habit.user = current_user
   
     if @habit.save
-      # Redirect to the habit_logs new page with habit_id param
       redirect_to habit_logs_new_path(habit_id: @habit.id), notice: "Habit created successfully!"
     else
       render :new, status: :unprocessable_entity

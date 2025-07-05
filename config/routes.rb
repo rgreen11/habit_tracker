@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # api habits
   get "/habits", to: "habits#index"
   get "/habits/new", to: "habits#new"
+  get "/habits/:id", to: "habits#show", as: :habit
   post "/habits", to: "habits#create"
   # api habit logs
   get "/habit_logs", to: "habit_logs#index"

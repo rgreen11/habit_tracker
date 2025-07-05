@@ -14,4 +14,8 @@
         <% if habit.habit_logs.first&.status != "done" %>
             <%= button_to "Mark Done", quick_check_in_path(habit_id: habit.id), method: :post %>
         <% end %>
+
+        <% unless show_page %>
+            <%= button_to "See habit", habit_path(habit), method: :get %>
+        <% end %>
     </div>
