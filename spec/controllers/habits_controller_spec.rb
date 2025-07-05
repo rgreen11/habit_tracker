@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HabitsController, type: :controller do
+  
   let!(:user)  { User.create!(email: "test@example.com", password: "password") }
   let!(:habit) { user.habits.create!(name: "Exercise", frequency_unit: "day", frequency_value: 1, start_date: Date.today) }
 
