@@ -1,0 +1,15 @@
+<h1>Log New Habit</h1>
+
+
+<%= form_with model: @habit_logs do |form| %>
+    <div>
+        <%= form.hidden_field :habit_id %>
+        <%= form.label :select_status %>:
+        <%= form.select :status, ["pending", "done", "missed", "skipped"]%>
+    </div>
+
+    <div>
+        <%= form.submit%>
+    </div>
+
+<% end %>
