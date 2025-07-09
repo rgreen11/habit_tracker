@@ -14,6 +14,8 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # Add this to use DatabaseCleaner with ActiveRecord
+  require 'database_cleaner/active_record'
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -37,6 +39,22 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  # Before the entire test suite runs, clean with truncation (good baseline)
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  # Start transaction before each example
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  # Rollback transaction after each example
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+  
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
   # compatibility in RSpec 3). It causes shared context metadata to be
