@@ -1,8 +1,5 @@
 class HabitLogsController < ApplicationController
   before_action :authenticate_user!
-  # def index
-  #    @habits = current_user.habits
-  # end
 
   def new
       @habit = Habit.find(params[:habit_id])
