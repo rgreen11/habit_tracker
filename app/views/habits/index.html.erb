@@ -29,6 +29,26 @@
   <% end %>
 </ul>
 
+<ul>
+    <% dates = {} %>
+  <% @habits.each do |habit| %>
+    <li>
+      <% if habit.habit_logs.any? && !dates[habit.habit_logs.first.log_date] %>
+         <% dates[habit.habit_logs.first.log_date] = 1 %>
+      <% else %>
+        <% dates[habit.habit_logs.first.log_date] += 1%>
+      <% end %>
+    </li>
+  <% end %>
+
+  <% dates.each do |attr_name, attr_value| %>
+  <div>
+    <strong>Number of Habits completed by date:</strong>
+    <%= attr_name %>: <%= attr_value %>
+  </div>
+<% end %>
+</ul>
+
 <div id="habit">
     <%= render @habits, show_page: false %>
 </div>
