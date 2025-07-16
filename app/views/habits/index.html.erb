@@ -3,6 +3,53 @@
 <%= link_to "New Habit", habits_new_path %>
 
 
+<p>
+  Filter by:
+  <%= link_to "All", habits_path %> |
+  <%= link_to "Missed", habits_path(status: "missed") %> |
+  <%= link_to "Completed", habits_path(status: "completed") %>
+</p>
+
+<% if params[:status].present? %>
+  <p><strong>Currently showing:</strong> <%= params[:status].capitalize %> habits</p>
+<% else %>
+  <p><strong>Currently showing:</strong> All habits</p>
+<% end %>
+
+<ul>
+  <% @habits.each do |habit| %>
+    <li>
+      <strong><%= habit.name %></strong>
+      <% if habit.habit_logs.any? %>
+        - Logs: <%= habit.habit_logs.count %>
+      <% else %>
+        - No logs yet
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%# Add the following in the controller?? %>
+<ul>
+    <% dates = {} %>
+  <% @habits.each do |habit| %>
+    <li>
+      <% if habit.habit_logs.any? && !dates[habit.habit_logs.first.log_date] %>
+         <% dates[habit.habit_logs.first.log_date] = 1 %>
+      <% else %>
+        <% dates[habit.habit_logs.first.log_date] += 1%>
+      <% end %>
+    </li>
+  <% end %>
+
+  <% dates.each do |attr_name, attr_value| %>
+  <div>
+    <strong>Number of Habits completed by date:</strong>
+    <%= attr_name %>: <%= attr_value %>
+  </div>
+<% end %>
+</ul>
+
 <div id="habit">
-    <%= render @habits, show_page: false%>
+    <%= render @habits, show_page: false %>
 </div>
