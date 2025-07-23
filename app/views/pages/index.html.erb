@@ -1,2 +1,7 @@
-<h1>Home</h1>
-<%= pie_chart({"done" => 5, "missed" => 2, "pending" => 1}) %>
+<div class="max-w-4xl mx-auto mt-12 p-6 bg-white shadow rounded-lg">
+  <h1 class="text-2xl font-bold mb-6 text-center">Your Habit Progress</h1>
+
+  <div class="flex justify-center">
+    <%= pie_chart({"done" => 5, "missed" => 2, "pending" => 1}) %>
+  </div>
+</div>

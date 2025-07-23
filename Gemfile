@@ -35,9 +35,14 @@ gem 'devise'
 # Charts https://www.rubydoc.info/gems/chartkick/5.1.5
 gem "chartkick"
 
-#Spec
+# Spec
 gem 'rspec-rails'
 
+# React integration
+gem 'react-rails'
+
+# style
+gem "tailwindcss-rails"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"

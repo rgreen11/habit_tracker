@@ -10,17 +10,19 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
   </head>
 
-<body>
-    <header class="navbar  navbar-inverse">
+<body class="bg-white text-black dark:bg-gray-900 dark:text-white">
+    <header class="navbar navbar-inverse">
       <div class="navbar-class">
-        <div>
+        <div class="flex justify-between items-center bg-white shadow px-8 py-4 text-lg font-semibold">
+          <h1>Welcome</h1>
+          <div><%= link_to "Home", root_path, class: "hover:text-blue-500" %></div>
             <% if user_signed_in? %>
-                <div><%= link_to "Create a New Habit", habits_new_path %></div>
-                <div><%= link_to "See your habits", habits_path %></div>
-                <div><%= button_to "Log Out", destroy_user_session_path, method: :delete %></div>
+                <div><%= link_to "Create a New Habit", habits_new_path, class: "hover:text-blue-500" %></div>
+                <div><%= link_to "See your habits", habits_path, class: "hover:text-blue-500" %></div>
+                <div><%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "hover:text-blue-500" %></div>
             <% else %>
-                <div><%= link_to "Sign in", new_user_session_path %></div>
-                <div><%= link_to "Sign up", new_user_registration_path %></div>
+                <div><%= link_to "Sign in", new_user_session_path, class: "hover:text-blue-500" %></div>
+                <div><%= link_to "Sign up", new_user_registration_path, class: "hover:text-blue-500" %></div>
             <% end %>
         </div>
       </div>
