@@ -35,12 +35,20 @@ gem 'devise'
 # Charts https://www.rubydoc.info/gems/chartkick/5.1.5
 gem "chartkick"
 
-#Spec
+# Spec
 gem 'rspec-rails'
 
+# React integration
+gem 'react-rails'
+
+# style
+gem "tailwindcss-rails"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
+gem 'sidekiq', '~> 7.1', '>= 7.1.2'
+gem 'sidekiq-cron', require: 'sidekiq/cron'
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -80,6 +88,11 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+end
+
+# Gemfile
+group :spec do
+  gem 'database_cleaner-active_record'
 end
 
 gem "rails-controller-testing", "~> 1.0"
