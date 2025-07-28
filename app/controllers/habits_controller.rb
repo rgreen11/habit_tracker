@@ -8,6 +8,13 @@ class HabitsController < ApplicationController
     end
   end
 
+  def completed_today_count
+    HabitLog
+      .joins(:habit)
+      .where(habits: { user_id: current_user.id }, status: "done", created_at: Time.zone.today.all_day)
+      .count
+  end
+
   def show
     @habit = Habit.find(params[:id]) 
   end

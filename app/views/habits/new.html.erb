@@ -1,27 +1,29 @@
-<h1>New Habit</h1>
+<div class="max-w-md mx-auto mt-12 p-6 bg-white shadow-md rounded-lg">
+  <h2 class="text-2xl font-bold mb-6 text-center">New Habit</h2>
 
-
-<%= form_with model: @habit do |form| %>
-    <div>
-        <%= form.label :name %>:
-        <%= form.text_field :name %>
-    </div>
-    <div>
-        <%= form.label :frequency_unit %>:
-        <%= form.text_field :frequency_unit %>
+  <%= form_with(model: @habit, local: true) do |form| %>
+    <div class="mb-4">
+      <%= form.label :name, class: "block text-gray-700 font-medium mb-1" %>
+      <%= form.text_field :name, class: "w-full border border-gray-300 rounded px-3 py-2" %>
     </div>
 
-    <div>
-        <%= form.label :frequency_value %>:
-        <%= form.text_field :frequency_value %>
-    </div>
-    <div>
-        <%= form.label :start_date %>:
-        <%= form.text_field :start_date %>
+    <div class="mb-4">
+      <%= form.label :frequency_unit, class: "block text-gray-700 font-medium mb-1" %>
+      <%= form.select :frequency_unit, ['day', 'week', 'month'], {}, class: "w-full border border-gray-300 rounded px-3 py-2" %>
     </div>
 
-    <div>
-        <%= form.submit%>
+    <div class="mb-4">
+      <%= form.label :frequency_value, class: "block text-gray-700 font-medium mb-1" %>
+      <%= form.number_field :frequency_value, class: "w-full border border-gray-300 rounded px-3 py-2" %>
     </div>
 
-<% end %>
+    <div class="mb-4">
+      <%= form.label :start_date, class: "block text-gray-700 font-medium mb-1" %>
+      <%= form.date_field :start_date, class: "w-full border border-gray-300 rounded px-3 py-2" %>
+    </div>
+
+    <div class="text-center">
+      <%= form.submit "Create Habit", class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded" %>
+    </div>
+  <% end %>
+</div>
