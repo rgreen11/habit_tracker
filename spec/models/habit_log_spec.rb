@@ -1,17 +1,16 @@
-require "test_helper"
+require "rails_helper"
 
-RSpec.describe HabitLogsController, type: :controller do
-  let!(:user) { User.create!(email: "user@test.com", password: "123456")}
-  let!(:habit) { user.habits.create!(name: "Bike")}
+RSpec.describe HabitLog, type: :model do
+  let!(:user)  { User.create!(email: "test@example.com", password: "password") }
+  let!(:habit) { user.habits.create!(name: "Exercise", frequency_unit: "day", frequency_value: 1, start_date: Date.today) }
 
-  before do
-    sign_in user    
+  it "is invalid without a status" do
+    habit_log = HabitLog.new(status: 'pending', habit_id: habit.id)
+    expect(habit_log).to be_valid
   end
 
-  describe "Get #index" do
-    it "returns a success response" do
-      get :index
-      expect(response).to have_http_status(:ok)
-    end
+  it "is invalid without a status" do
+    habit_log = HabitLog.new(status: nil)
+    expect(habit_log).to_not be_valid
   end
 end

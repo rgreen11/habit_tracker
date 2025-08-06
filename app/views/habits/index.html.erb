@@ -1,8 +1,62 @@
-<h1>Habit</h1>
+<div class="max-w-5xl mx-auto p-6 space-y-8">
+    <!-- Heading -->
+  <div class="text-center">
+    <h1 class="text-3xl font-bold">Your Habits</h1>
+  </div>
 
-<%= link_to "New Habit", habits_new_path %>
+  <%= link_to "New Habit", habits_new_path %>
 
+  <!-- Filter Bar -->
+  <div class="flex items-center justify-center space-x-4">
+    <span class="font-semibold">Filter by:</span>
+    <%= link_to "All", habits_path, class: "text-blue-600 hover:underline" %>
+    <%= link_to "Missed", habits_path(status: 'missed'), class: "text-red-600 hover:underline" %>
+    <%= link_to "Completed", habits_path(status: 'done'), class: "text-green-600 hover:underline" %>
+  </div>
 
-<div id="habit">
-    <%= render @habits, show_page: false%>
+ <!-- Summary -->
+  <div class="bg-gray-100 p-4 rounded shadow text-center">
+    <% if params[:status].present? %>
+      <p class="font-semibold">Currently showing: <span class="text-blue-700"><%= params[:status].capitalize %> habits</p>
+    <% else %>
+      <p class="mt-1">All Habits</p>
+    <% end %>
+  </div>
+  <ul>
+    <% @habits.each do |habit| %>
+      <li>
+        <strong><%= habit.name %></strong>
+        <% if habit.habit_logs.any? %>
+          - Logs: <%= habit.habit_logs.count %>
+        <% else %>
+          - No logs yet
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%# Add the following in the controller?? %>
+  <ul>
+      <% dates = {} %>
+    <% @habits.each do |habit| %>
+      <li>
+        <% if habit.habit_logs.any? && !dates[habit.habit_logs.first.log_date] %>
+          <% dates[habit.habit_logs.first.log_date] = 1 %>
+        <% else %>
+          <% dates[habit.habit_logs.first.log_date] += 1%>
+        <% end %>
+      </li>
+    <% end %>
+
+    <% dates.each do |attr_name, attr_value| %>
+    <div>
+      <strong>Number of Habits completed by date:</strong>
+      <%= attr_name %>: <%= attr_value %>
+    </div>
+  <% end %>
+  </ul>
+
+  <div id="habit">
+      <%= render @habits, show_page: false %>
+  </div>
 </div>

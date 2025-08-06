@@ -2,6 +2,17 @@ class HabitsController < ApplicationController
   before_action :authenticate_user!
   def index
     @habits = current_user.habits
+
+    if params[:status].present?
+      @habits = @habits.joins(:habit_logs).where(habit_logs: { status: params[:status] }).distinct
+    end
+  end
+
+  def completed_today_count
+    HabitLog
+      .joins(:habit)
+      .where(habits: { user_id: current_user.id }, status: "done", created_at: Time.zone.today.all_day)
+      .count
   end
 
   def show

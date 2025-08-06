@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -12,9 +14,13 @@ Rails.application.routes.draw do
   get "/habits/new", to: "habits#new"
   get "/habits/:id", to: "habits#show", as: :habit
   post "/habits", to: "habits#create"
+
   # api habit logs
   get "/habit_logs", to: "habit_logs#index"
   get "/habit_logs/new", to: "habit_logs#new"
   post "/habit_logs", to: "habit_logs#create"
   post "/quick_check_in", to: "habit_logs#quick_check_in"
+
+  # Protect it with Devise or Basic Auth in production!
+  mount Sidekiq::Web => '/sidekiq'
 end
